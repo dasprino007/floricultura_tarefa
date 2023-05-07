@@ -1,0 +1,42 @@
+.quadrado{
+    width: 100px;
+    height: 100px;
+}
+
+#banner{
+    position: relative;
+    background-image: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    height: 500px;
+    width: auto;
+    background-size: 100%;
+}
+
+.text{
+    font-size: 24px;
+}
+
+.paragrafo{
+    width: 700px;
+}
+
+.separdo{
+    background-color: bisque;
+}
+
+.imagem{
+    width: 700px;
+}
+
+.metade{
+    width: 50vw;
+    height: 84vh;
+}
+
+.footer{
+    background-color: #D9D9D9;
+}
+
+.copyright{
+    width: 250px;
+}
