@@ -1,6 +1,7 @@
 create database floricultura
 use floricultura
 
+
 create table cliente(
 cpf char(11) primary key, 
 nome varchar(30) not null,
@@ -23,26 +24,41 @@ create table vendas(
     id int primary key identity(1,1),
     clientes_vendas char(11),
     produtos_vendas int,
-    NF_vendas int,
-    CONSTRAINT FK_ClientesVendas FOREIGN KEY vendas(clientes_vendas)
-    REFERENCES cliente(cpf),
-    CONSTRAINT FK_ProdutosVendas FOREIGN KEY vendas(produtos_vendas)
-    REFERENCES produtos(id),
-    CONSTRAINT FK_ClientesVendas FOREIGN KEY vendas(NF_vendas)
-    REFERENCES NF(NF_vendas)
+    NF_vendas int
+	CONSTRAINT FK_CLIENTES_VENDAS 
+	FOREIGN KEY (clientes_vendas) references cliente(cpf),
+	CONSTRAINT FK_produtos_VENDAS 
+	FOREIGN KEY (produtos_vendas) references produtos(id),
+	CONSTRAINT FK_NF_VENDAS 
+	FOREIGN KEY (NF_vendas) references NF(id)
 )
 
+create table NF(
+id int primary key identity(1,1),
+data_emissão date,
+data_entrega date,
+id_produto int,
+CPF_clientes char(11),
+CONSTRAINT FK_CLIENTES_NF 
+FOREIGN KEY (CPF_clientes) references cliente(cpf),
+CONSTRAINT FK_produtos_NF 
+FOREIGN KEY (id_produto) references produtos(id)
+)
 
+insert into cliente(cpf,nome,email,senha,cep,estado)
+values(74360493053,'Ricardo Leite','ricardo12@gmail.com','taretes123','09169206','SP')
 
-74360493053,'Ricardo Leite','ricardo12@gmail.com','taretes123','09169206','SP'
+insert into cliente(cpf,nome,email,senha,cep,estado)
+values(60086278061,'Manuel da Silva','manuel@yahoo.com','trarsiom','57043030','AL')
 
-60086278061,'Manuel da Silva','manuel@yahoo.com','trarsiom','57043030','AL'
+insert into cliente(cpf,nome,email,senha,cep,estado)
+values(69542998473,'Diego Quaresma','DIego009@gmail.com','534478356','57602315','AL')
 
-69542998473,'Diego Quaresma','DIego009@gmail.com','534478356','57602315','AL'
+insert into cliente(cpf,nome,email,senha,CEP,estado)
+values(05788625491,'jose diogo','josediogo@gmail.com','hgsgdsgfkljf123','05788625','AL')
 
-05788625491,'jose diogo','josediogo@gmail.com','hgsgdsgfkljf123','05788625491','AL'
-
-97183801241,'Renan da Silva','renan1678@gmail.com','52652363786','69960970','AC'
+insert into cliente(cpf,nome,email,senha,CEP,estado)
+values(97183801241,'Renan da Silva','renan1678@gmail.com','52652363786','69960970','AC')
 
 INSERT INTO produtos(nome,preco,descricao,qnt)
 VALUES('Buquê de Rosas Vermelhas',5.90,'Um clássico da floricultura, o buquê de rosas vermelhas é uma escolha romântica e elegante para presentear alguém especial. Composta por 12 rosas frescas e bem cuidadas, esta opção é perfeita para aniversários, Dia dos Namorados, ou simplesmente para expressar amor e carinho.',50)
